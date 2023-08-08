@@ -1,14 +1,18 @@
 
+
 import './App.css';
 import Home from './components/Home';
 import Login from './components/Login';
 import Registration from './components/Registration';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from './components/Header';
+
 import React from 'react';
-import About from './components/About';
+
 import Logout from './components/Logout';
-import NewTest from './components/NewTest';
+import AddEnquiry from './components/AddEnquiry';
+import Enquiries from './components/Enquiries';
+import Dashboard from './Dashboard';
+import Category from './components/Category';
 
 function App() {
   return (
@@ -17,16 +21,21 @@ function App() {
 
         {/* <Header /> */}
         <Routes>
-          <Route path="/header" element={<Home />} />
-          <Route path="/" element={<Header />} />
-          <Route path="/about" element={<About />} />
+    
           <Route path="/logout" element={<Logout />} />
-        </Routes>
-        <Routes>
+        
+        
           <Route path="/signup" element={<Registration />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/test" element={<NewTest />} />
+         
+          <Route path='/dashboard' element={<Dashboard/>}/>
+          <Route path='/category' element={<Category/>}/>
+          {/* <Route path='/' element={<Dashboard/>}/>
+          <Route path='/' element={<Dashboard/>}/> */}
+          
+    <Route    path='/addEnquiry' element={<AddEnquiry/>}/>
+    <Route    path='/enquiries' element={<Enquiries/>}/>
         </Routes>
       </BrowserRouter>
     </React.Fragment>
@@ -34,3 +43,7 @@ function App() {
 }
 
 export default App;
+
+
+
+//db.student.find({$and:[{"email":""},{"password":""}]})

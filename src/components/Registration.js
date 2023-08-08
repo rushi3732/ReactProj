@@ -2,14 +2,14 @@ import React, { useEffect } from 'react'
 import axios from 'axios'
 //import { Container } from 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Grid, TextField, Button, FormLabel } from "@material-ui/core";
-
+import "./register.css";
 
 function Registration() {
 
     const userObj = {
         "firstName": '',
         "lastName": '',
-        "city": '',
+        "city": '', 
         "email": '',
         "address": '',
         "state": '',
@@ -79,7 +79,7 @@ function Registration() {
 
     return (
 
-        <div className="container-fluid">
+        <div className="container-fluid login">
 
             <Container maxWidth="md" style={{ border: "40px solid #f2e9e9" }}>
                 <Grid item xs={6} md={3} style={{ paddingLeft: "40%", margin: "40px" }}>

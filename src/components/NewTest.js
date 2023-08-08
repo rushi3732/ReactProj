@@ -76,12 +76,12 @@ function Header() {
                             <Link to="faq" className={classes.link}>
                                 FAQ
                             </Link>
-                            {/* <Link to="signup" className={classes.link} >
+                             <Link to="signup" className={classes.link} >
                                 Signup
                             </Link>
                             <Link to="login" className={classes.link}>
                                 Login
-                            </Link> */}
+                            </Link> 
                             <Link to="logout" className={classes.link}  >
                                 Logout
                             </Link>
@@ -159,7 +159,7 @@ export default function Login() {
         axios.post("http://localhost:8080/loginUser", user)
             .then(response => {
 
-                if (response.data.status == 200) {
+                if (response.data.status === 200) {
                     ReactSession.setStoreType("localStorage");
                     ReactSession.set("userData", response.data.token);
                     setUserDetails(response.data)
@@ -167,7 +167,7 @@ export default function Login() {
 
                     navigate('/')
 
-                } else if (response.data.status == 400) {
+                } else if (response.data.status === 400) {
 
                     InvalideSet(true)
                     throw new Error('Something went wrong ...');

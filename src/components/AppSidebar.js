@@ -1,6 +1,6 @@
-//import useState hooto create menu collapse state
+//import useState hook to create menu collapse state
 import React, { useState } from "react";
-import{Link,Route ,Routes,BrowserRouter as Router} from "react-router-dom"
+import { Link, Route, Routes, BrowserRouter as Router } from "react-router-dom"
 //import react pro sidebar components
 import {
   ProSidebar,
@@ -31,7 +31,7 @@ import "./Header.css";
 //import Author from "./Author";
 //import Dashboard from "./Dashboard";
 
-const Home = () => {
+const AppSidebar = () => {
   //create initial menuCollapse state using useState hook
   const [menuCollapse, setMenuCollapse] = useState(false);
 
@@ -42,16 +42,17 @@ const Home = () => {
   };
 
   return (
-  
- 
+
+    <div style={{ diplay: "flex" }}>
+
       <div id="header">
-     
+
         {/* collapsed props to change menu size using menucollapse state */}
         <ProSidebar collapsed={menuCollapse}>
           <SidebarHeader>
             <div className="logotext">
               {/* small and big change using menucollapse state */}
-              <p>{menuCollapse ? "Logo" : "DashBoard"}</p>
+              <p>{menuCollapse ? "Logo" : "Big Logo"}</p>
             </div>
             <div className="closemenu" onClick={menuIconClick}>
               {/* changing menu collapse icon on click */}
@@ -61,42 +62,48 @@ const Home = () => {
           <SidebarContent>
             <Menu iconShape="square">
               <MenuItem active={true} icon={<FiHome />}>
-                <Link to="/dashboard" >Dashboard</Link>
+                Dashboard
+                <Link to="/" className="nav-item nav-link " >Dashboard</Link>
+
               </MenuItem>
               <MenuItem icon={<FaList />}>
-               <Link to="/category"  >Category</Link>
-               </MenuItem>
-               
+                Category
+
+              </MenuItem>
               <MenuItem icon={<FaRegHeart />}>
-                <Link to="/favourite"  >Favourite</Link>
+                Favourite
+
               </MenuItem>
 
               <MenuItem icon={<RiPencilLine />}>
-                <Link to="/auther"  >Auther</Link>
+                Auther
               </MenuItem>
-
               <MenuItem icon={<BiCog />}>
-               <Link to="/settings">Settings</Link>
-             </MenuItem>
+                Settings
+              </MenuItem>
             </Menu>
-          
+
           </SidebarContent>
           <SidebarFooter>
             <Menu iconShape="square">
               <MenuItem icon={<FiLogOut />}>
-              <Link to="/logout" className="nav-item nav-link " >Logout</Link>
+                <Link to="/logout" className="nav-item nav-link " >Logout</Link>
               </MenuItem>
             </Menu>
           </SidebarFooter>
-         
+
         </ProSidebar>
-     
-   
-  
+
+
       </div>
-    
-    
+
+
+    </div>
+
+
   );
 };
 
-export default Home;
+export default AppSidebar;
+
+

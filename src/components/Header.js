@@ -1,107 +1,68 @@
-import React, { useContext, Consumer } from "react";
+import React from "react";
+import { AiOutlineUser } from "react-icons/ai";
 import {
-    AppBar,
-    Toolbar,
-    CssBaseline,
-    Typography,
-    makeStyles,
-    useTheme,
-    useMediaQuery,
-    MuiThemeProvider,
-} from "@material-ui/core";
-import { Link } from "react-router-dom";
-import DrawerComponent from "./Drawer";
-import { LoginDetails } from './Login';
-import { ReactSession } from 'react-client-session';
-
-
-const useStyles = makeStyles((theme) => ({
-    navlinks: {
-        marginLeft: theme.spacing(5),
-        display: "flex",
-    },
-    logo: {
-        flexGrow: "1",
-        cursor: "pointer",
-    },
-    link: {
-        textDecoration: "none",
-        color: "white",
-        fontSize: "20px",
-        marginLeft: theme.spacing(20),
-        "&:hover": {
-            color: "yellow",
-            borderBottom: "1px solid white",
-        },
-    },
-}));
-
-function Header() {
-    const classes = useStyles();
-    const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-    var jwt = require('jsonwebtoken');
-    const data = ReactSession.get("userData");
-    console.log(jwt.decode(ReactSession.get("userData"), "context data"))
-
-    return (
-
-        <MuiThemeProvider>
-            <AppBar position="static">
-                <CssBaseline />
-                <Toolbar>
-                    <Typography variant="h4" className={classes.logo}>
-                        Navbar
-
-                    </Typography>
-                    {isMobile ? (
-                        <DrawerComponent />
-                    ) : (
-                        <div className={classes.navlinks}>
-                            <Link to="/" className={classes.link}>
-                                Home
-                            </Link>
-                            <Link to="about" className={classes.link}>
-                                About
-                            </Link>
-                            <Link to="contact" className={classes.link}>
-                                Contact
-                            </Link>
-                            <Link to="faq" className={classes.link}>
-                                FAQ
-                            </Link>
-                            {/* <Link to="signup" className={classes.link} >
-                                Signup
-                            </Link>
-                            <Link to="login" className={classes.link}>
-                                Login
-                            </Link> */}
-                            <Link to="logout" className={classes.link}  >
-                                Logout
-                            </Link>
-                            <LoginDetails.Consumer>
-
-                                {data => {
-                                    console.log(data, "info data")
-
-                                    //let { token } = data;
-                                    //console.log(jwt.decode(data, "infot data"))
-                                    // return (
-                                    //     <div style={menuStyle}>
-                                    //         <h1>Test</h1>
-                                    //         <Menu />
-                                    //         <InfoBar />
-                                    //     </div>
-                                    // )
-                                }}
-                            </LoginDetails.Consumer>
-                        </div>
-
-                    )}
-                </Toolbar>
-            </AppBar>
-        </MuiThemeProvider>
-
-    );
+  Nav,
+  Navbar,
+  NavbarBrand,
+  NavbarText,
+  NavItem,
+  NavLink,
+} from "reactstrap";
+let minOffset = 0, maxOffset = 50
+let thisYear = (new Date()).getFullYear();
+let allYears = [];
+for (let x = 0; x <= maxOffset; x++) {
+  allYears.push(thisYear - x)
 }
+
+const yearList = allYears.map((x) => { return (<option key={x}>{x}</option>) });
+const Header = () => {
+  return (
+    <div>
+      <Navbar color="danger" light expand="md">
+        <NavbarBrand href="/">Dashboard</NavbarBrand>
+        <Nav className="mr-auto" navbar>
+          <NavItem>
+            <NavLink href="/components/"><h4>Company Name</h4></NavLink>
+          </NavItem>
+
+        </Nav>
+        <NavbarText>
+          <div style={{ display: "flex" }}>
+            <div style={{ padding: "10px" }}>ALL</div>
+            <div style={{ padding: "10px" }}>Business</div>
+            <div style={{ padding: "10px" }}>Add Hoc</div>
+            {/* <AiOutlineUser></AiOutlineUser> */}
+          </div>
+        </NavbarText>
+
+      </Navbar>
+      <Navbar color="danger" light expand="md" style={{ borderBottomLeftRadius: "80px" }}>
+        <NavbarText>
+          <div style={{ display: "flex" }}>
+            <div style={{ padding: "10px" }}>ALL</div>
+            <div style={{ padding: "10px" }}>REF</div>
+            <div style={{ padding: "10px" }}>AC</div>
+            <div style={{ padding: "10px" }}>WM</div>
+            <div style={{ padding: "10px" }}>CE</div>
+            <div style={{ padding: "10px" }}>WH</div>
+            <div style={{ padding: "10px" }}>FLATFORM</div>
+            {/* <AiOutlineUser></AiOutlineUser> */}
+          </div>
+        </NavbarText>
+
+        <NavbarText>
+          <div style={{ display: "flex" }}>
+            <div style={{ padding: "4px" }}>Year :</div>
+            <div style={{ padding: "4px" }}> <select>
+              {yearList}
+            </select></div>
+            {/* <AiOutlineUser></AiOutlineUser> */}
+          </div>
+        </NavbarText>
+
+      </Navbar>
+    </div>
+  );
+};
 export default Header;
